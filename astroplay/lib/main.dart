@@ -51,9 +51,19 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(padding: EdgeInsets.all(5), child: Image.asset('assets/solar-system.png')),
         scrolledUnderElevation: 10.0,
-        elevation: 10.0,
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF7B5CFF), Color(0xFFFF5FA2)],
+            ),
+          ),
+        ),
         title: Text(
           'AstroPlay',
           style: GoogleFonts.baloo2(fontWeight: FontWeight.bold, fontSize: 25),
