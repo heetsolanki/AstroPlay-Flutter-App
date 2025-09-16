@@ -39,7 +39,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [HomeScreen(), HomeScreen()];
+  final List<Widget> _screens = [HomeScreen(), HomeScreen(), HomeScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -51,7 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(padding: EdgeInsets.all(5), child: Image.asset('assets/solar-system.png')),
+        leading: Padding(
+          padding: EdgeInsets.all(5),
+          child: Image.asset('assets/solar-system.png'),
+        ),
         scrolledUnderElevation: 10.0,
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -76,6 +79,10 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
         items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Symbols.home_filled_rounded),
+            label: 'Home',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Symbols.home_filled_rounded),
             label: 'Home',
