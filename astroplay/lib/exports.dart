@@ -9,3 +9,5 @@ export 'screens/home_screen.dart';
 
 // Components
 export 'components/space_card_component.dart';
+export 'components/quiz_card_component.dart';
+export 'daily_quiz.dart';
