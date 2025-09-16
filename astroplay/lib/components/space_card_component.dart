@@ -20,7 +20,7 @@ class _SpaceCardState extends State<SpaceCard> {
           color: Color(0xFF1A1B41),
           boxShadow: [
             BoxShadow(
-              color: Color(0xFF3DFF92).withValues(alpha: 0.2),
+              color: Color(0xFF3DFF92).withValues(alpha: 0.15),
               blurRadius: 10.0,
               spreadRadius: 5.0,
               offset: Offset(0, 0),
