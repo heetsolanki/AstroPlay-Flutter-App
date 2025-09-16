@@ -8,12 +8,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<Map<String, String?>> items = [
+    {'title': 'Planets', 'imagePath': 'assets/planet-earth.png'},
+    {'title': 'Stars', 'imagePath': 'assets/star.png'},
+    {'title': 'Moons', 'imagePath': 'assets/moon.png'},
+    {'title': 'Rockets', 'imagePath': 'assets/rocket.png'},
+    {'title': 'Astronauts', 'imagePath': 'assets/astronaut.png'},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        scrollDirection: Axis.vertical,
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
         children: [
+          // Main Exploration Cards
           SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
@@ -23,23 +34,86 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: 'Planets',
                   imagePath: 'assets/planet-earth.png',
                 ),
-                SpaceCard(
-                  title: 'Stars',
-                  imagePath: 'assets/star.png',
-                ),
-                SpaceCard(
-                  title: 'Moons',
-                  imagePath: 'assets/moon.png',
-                ),
-                SpaceCard(
-                  title: 'Rockets',
-                  imagePath: 'assets/rocket.png',
-                ),
+                SpaceCard(title: 'Stars', imagePath: 'assets/star.png'),
+                SpaceCard(title: 'Moons', imagePath: 'assets/moon.png'),
+                SpaceCard(title: 'Rockets', imagePath: 'assets/rocket.png'),
                 SpaceCard(
                   title: 'Astronauts',
                   imagePath: 'assets/astronaut.png',
                 ),
               ],
+            ),
+          ),
+
+          // Fun Fact Card
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Color(0xFF1A1B41),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFFFF5FA2).withValues(alpha: 0.15),
+                    blurRadius: 10.0,
+                    spreadRadius: 5.0,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              // height: 250,
+              width: 250,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/idea.png'),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          'Fun Fact!',
+                          style: GoogleFonts.fredoka(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 22,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Text(
+                        'Did you know Jupiter has 79 moons?',
+                        style: GoogleFonts.nunito(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          // Daily Quiz Card
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 28, horizontal: 20),
+            child: QuizCard(
+              question: dailyQuestions[0]['question']!,
+              options: List<String>.from(dailyQuestions[0]["options"]),
+              correctAnswer: dailyQuestions[0]["correctAnswer"],
             ),
           ),
         ],
