@@ -2,6 +2,7 @@
 export 'package:flutter/material.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:material_symbols_icons/symbols.dart';
+export 'dart:math';
 
 // Files
 export 'main.dart';
@@ -11,3 +12,4 @@ export 'screens/home_screen.dart';
 export 'components/space_card_component.dart';
 export 'components/quiz_card_component.dart';
 export 'daily_quiz.dart';
+export 'daily_facts.dart';
