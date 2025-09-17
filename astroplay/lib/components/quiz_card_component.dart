@@ -1,17 +1,9 @@
 import '../exports.dart';
+import 'package:intl/intl.dart';
 
 class QuizCard extends StatefulWidget {
-  final String question;
-  final List<String> options;
-  final String correctAnswer;
-
-  // final Function(String) onOptionSelected;
-
   const QuizCard({
     super.key,
-    required this.question,
-    required this.options,
-    required this.correctAnswer,
   });
 
   @override
@@ -19,13 +11,30 @@ class QuizCard extends StatefulWidget {
 }
 
 class _QuizCardState extends State<QuizCard> {
+  late Map<String, dynamic> todayQuestion;
   int? _selectedIndex;
   bool? _isCorrect;
+
+  @override
+  void initState() {
+    super.initState();
+
+    DateTime nowUtc = DateTime.now().toUtc();
+    DateTime nowIst = nowUtc.add(const Duration(hours: 5, minutes: 30));
+
+    String dateKey = DateFormat('yyyyMMdd').format(nowIst); // safer seed
+    int seed = int.parse(dateKey);
+
+    final random = Random(seed);
+    int questionIndex = random.nextInt(dailyQuestions.length);
+
+    todayQuestion = dailyQuestions[questionIndex];
+  }
 
   void checkAnswer(int index) {
     setState(() {
       _selectedIndex = index;
-      _isCorrect = widget.options[index] == widget.correctAnswer;
+      _isCorrect = todayQuestion["options"][index] == todayQuestion["correctAnswer"];
     });
   }
 
@@ -33,35 +42,36 @@ class _QuizCardState extends State<QuizCard> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xFF1A1B41),
+        color: const Color(0xFF1A1B41),
         boxShadow: [
           BoxShadow(
-            color: Color(0xFF3DFF92).withValues(alpha: 0.15),
+            color: const Color(0xFF3DFF92).withValues(alpha: 0.15),
             blurRadius: 10.0,
             spreadRadius: 5.0,
-            offset: Offset(0, 0),
+            offset: const Offset(0, 0),
           ),
         ],
         borderRadius: BorderRadius.circular(10),
       ),
       width: 250,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 15),
         child: Column(
           children: [
             Text(
-              widget.question,
+              todayQuestion["question"],
               style: GoogleFonts.nunito(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 10),
-            ...List.generate(widget.options.length, (index) {
+            const SizedBox(height: 10),
+            ...List.generate(todayQuestion["options"].length, (index) {
               return RadioListTile<int?>(
-                activeColor: Color(0xFFFF5FA2),
+                key: ValueKey("${todayQuestion["question"]}_$index"),
+                activeColor: const Color(0xFFFF5FA2),
                 title: Text(
-                  widget.options[index],
+                  todayQuestion["options"][index],
                   style: GoogleFonts.nunito(
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
@@ -81,7 +91,7 @@ class _QuizCardState extends State<QuizCard> {
               Text(
                 _isCorrect!
                     ? "✅ Correct!"
-                    : "❌ Wrong! The answer is ${widget.correctAnswer}",
+                    : "❌ Wrong! The answer is ${todayQuestion["correctAnswer"]}",
                 style: GoogleFonts.nunito(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
