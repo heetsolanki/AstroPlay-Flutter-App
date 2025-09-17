@@ -1,4 +1,5 @@
 import '../exports.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,6 +9,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String todayFacts;
   final List<Map<String, String?>> items = [
     {'title': 'Planets', 'imagePath': 'assets/planet-earth.png'},
     {'title': 'Stars', 'imagePath': 'assets/star.png'},
@@ -15,6 +17,22 @@ class _HomeScreenState extends State<HomeScreen> {
     {'title': 'Rockets', 'imagePath': 'assets/rocket.png'},
     {'title': 'Astronauts', 'imagePath': 'assets/astronaut.png'},
   ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    DateTime nowUtc = DateTime.now().toUtc();
+    DateTime nowIst = nowUtc.add(const Duration(hours: 5, minutes: 30));
+
+    String dateKey = DateFormat('yyyyMMdd').format(nowIst); // safer seed
+    int seed = int.parse(dateKey);
+
+    final random = Random(seed);
+    int factIndex = random.nextInt(dailyFacts.length);
+
+    todayFacts = dailyFacts[factIndex];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          'Fun Fact!',
+                          'Daily Fun Fact!',
                           style: GoogleFonts.fredoka(
                             fontWeight: FontWeight.w600,
                             fontSize: 22,
@@ -110,11 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // Daily Quiz Card
           Padding(
             padding: EdgeInsets.symmetric(vertical: 28, horizontal: 20),
-            child: QuizCard(
-              question: dailyQuestions[0]['question']!,
-              options: List<String>.from(dailyQuestions[0]["options"]),
-              correctAnswer: dailyQuestions[0]["correctAnswer"],
-            ),
+            child: QuizCard(),
           ),
         ],
       ),
