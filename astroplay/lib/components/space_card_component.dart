@@ -40,10 +40,10 @@ class _SpaceCardState extends State<SpaceCard> {
                 widget.title,
                 style: GoogleFonts.fredoka(
                   fontWeight: FontWeight.w600,
-                  fontSize: 40,
+                  fontSize: 30,
                 ),
               ),
-              SizedBox(height: 140, width: 140, child: Image.asset(widget.imagePath)),
+              SizedBox(height: 120, width: 120, child: Image.asset(widget.imagePath)),
             ],
           ),
         ),
