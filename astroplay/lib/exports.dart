@@ -7,9 +7,12 @@ export 'dart:math';
 // Files
 export 'main.dart';
 export 'screens/home_screen.dart';
+export 'screens/explore_screen.dart';
 
 // Components
-export 'components/space_card_component.dart';
 export 'components/quiz_card_component.dart';
-export 'daily_quiz.dart';
-export 'daily_facts.dart';
+export 'components/space_card_component.dart';
+
+// Data
+export 'data/daily_quiz.dart';
+export 'data/daily_facts.dart';
