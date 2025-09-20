@@ -10,13 +10,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String todayFacts;
-  final List<Map<String, String?>> items = [
-    {'title': 'Planets', 'imagePath': 'assets/planet-earth.png'},
-    {'title': 'Stars', 'imagePath': 'assets/star.png'},
-    {'title': 'Moons', 'imagePath': 'assets/moon.png'},
-    {'title': 'Rockets', 'imagePath': 'assets/rocket.png'},
-    {'title': 'Astronauts', 'imagePath': 'assets/astronaut.png'},
-  ];
 
   @override
   void initState() {
@@ -25,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     DateTime nowUtc = DateTime.now().toUtc();
     DateTime nowIst = nowUtc.add(const Duration(hours: 5, minutes: 30));
 
-    String dateKey = DateFormat('yyyyMMdd').format(nowIst); // safer seed
+    String dateKey = DateFormat('yyyyMMdd').format(nowIst);
     int seed = int.parse(dateKey);
 
     final random = Random(seed);
@@ -48,16 +41,17 @@ class _HomeScreenState extends State<HomeScreen> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
+                SpaceCard(title: 'Planets', imagePath: 'assets/app_images/planet.webp'),
+                SpaceCard(title: 'Moons', imagePath: 'assets/app_images/moon.webp'),
                 SpaceCard(
-                  title: 'Planets',
-                  imagePath: 'assets/planet-earth.png',
+                  title: 'Constellations',
+                  imagePath: 'assets/app_images/constellation.webp',
                 ),
-                SpaceCard(title: 'Stars', imagePath: 'assets/star.png'),
-                SpaceCard(title: 'Moons', imagePath: 'assets/moon.png'),
-                SpaceCard(title: 'Rockets', imagePath: 'assets/rocket.png'),
+                SpaceCard(title: 'Stars', imagePath: 'assets/app_images/star.webp'),
+                SpaceCard(title: 'Rockets', imagePath: 'assets/app_images/rocket.webp'),
                 SpaceCard(
                   title: 'Astronauts',
-                  imagePath: 'assets/astronaut.png',
+                  imagePath: 'assets/app_images/astronaut.webp',
                 ),
               ],
             ),
@@ -94,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 35,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/idea.png'),
+                              image: AssetImage('assets/app_images/idea.webp'),
                             ),
                           ),
                         ),
