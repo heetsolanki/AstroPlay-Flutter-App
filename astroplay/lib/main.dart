@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MyHomePage(),
-      routes: {},
+      routes: {
+        '/home': (context) => const MyHomePage(),
+        '/explore': (context) => const ExploreScreen(),
+      },
     );
   }
 }
@@ -39,7 +42,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [HomeScreen(), HomeScreen(), HomeScreen()];
+  final List<Widget> _screens = [HomeScreen(), ExploreScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -53,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         leading: Padding(
           padding: EdgeInsets.all(5),
-          child: Image.asset('assets/solar-system.png'),
+          child: Image.asset('assets/app_images/logo.webp'),
         ),
         scrolledUnderElevation: 10.0,
         elevation: 0,
@@ -84,12 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Symbols.home_filled_rounded),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Symbols.home_filled_rounded),
-            label: 'Home',
+            icon: Icon(Symbols.planet_rounded),
+            label: 'Explore',
           ),
         ],
       ),
