@@ -41,14 +41,26 @@ class _HomeScreenState extends State<HomeScreen> {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                SpaceCard(title: 'Planets', imagePath: 'assets/app_images/planet.webp'),
-                SpaceCard(title: 'Moons', imagePath: 'assets/app_images/moon.webp'),
+                SpaceCard(
+                  title: 'Planets',
+                  imagePath: 'assets/app_images/planet.webp',
+                ),
+                SpaceCard(
+                  title: 'Moons',
+                  imagePath: 'assets/app_images/moon.webp',
+                ),
                 SpaceCard(
                   title: 'Constellations',
                   imagePath: 'assets/app_images/constellation.webp',
                 ),
-                SpaceCard(title: 'Stars', imagePath: 'assets/app_images/star.webp'),
-                SpaceCard(title: 'Rockets', imagePath: 'assets/app_images/rocket.webp'),
+                SpaceCard(
+                  title: 'Stars',
+                  imagePath: 'assets/app_images/star.webp',
+                ),
+                SpaceCard(
+                  title: 'Rockets',
+                  imagePath: 'assets/app_images/rocket.webp',
+                ),
                 SpaceCard(
                   title: 'Astronauts',
                   imagePath: 'assets/app_images/astronaut.webp',
