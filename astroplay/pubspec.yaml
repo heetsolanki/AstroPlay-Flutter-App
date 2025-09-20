@@ -66,6 +66,13 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/
+    - assets/app_images/
+    - assets/planet_images/
+    - assets/moon_images/
+    - assets/constellation_images/
+    - assets/star_images/
+    - assets/rocket_images/
+    - assets/astronaut_images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
